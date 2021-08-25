@@ -1,0 +1,45 @@
+@import "./src/styles/styles.scss";
+
+.not-found__wrapper {
+  font-family: $font_familyInter;
+  color: $darkGreyTitle;
+  font-weight: $bold;
+  height: 100vh;
+  @include flex(column, center, flex-start);
+  padding-top: 12.5rem;
+
+  & h3 {
+    font-size: $font_40px;
+    line-height: 54px;
+  }
+
+  .not-found__content {
+    font-size: $font_24px;
+    line-height: 13px;
+  }
+
+  .not-found__button {
+    display: block;
+    color: $mainColor;
+    font-size: $font_20px;
+    line-height: 13px;
+    padding: 1.875rem 0;
+    cursor: pointer;
+  }
+}
+
+@include mobile-w {
+
+  .not-found__wrapper {
+    padding-top: 0;
+    justify-content: center;
+  }
+}
+
+@include mobile-w {
+
+  .not-found__wrapper {
+    padding-top: 0;
+    justify-content: center;
+  }
+}

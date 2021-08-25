@@ -1,0 +1,71 @@
+<section class="signUp-mentor__wrapper">
+  <div class="signUp__form-wrapper">
+    <h3 class="signUp-mentor__title">Sign up as an expert</h3>
+    <p class="signUp-mentor__descr">Complete the form to create your account</p>
+
+    <form [formGroup]="signUpMentorForm" (ngSubmit)="onSubmit()">
+      <div class="signUp-mentor__group">
+        <label>Full Name
+          <input
+            type="text"
+            name="fullName"
+            placeholder="John Doe"
+            class="signUp-mentor__group-input"
+            formControlName="fullName"/>
+        </label>
+        <div class="invalid-feedback">
+          <span *ngIf="signUpMentorForm.controls['fullName'].invalid && signUpMentorForm.controls['fullName'].touched">This field is required</span>
+        </div>
+      </div>
+      <div class="signUp-mentor__group">
+        <label>Email
+          <input type="email"
+                 name="email"
+                 placeholder="example@email.com"
+                 class="signUp-mentor__group-input"
+                 formControlName="email"/>
+        </label>
+        <div class="invalid-feedback">
+          <span *ngIf="signUpMentorForm.controls['email'].invalid && signUpMentorForm.controls['email'].touched">Email is required</span>
+        </div>
+      </div>
+      <div class="signUp-mentor__group">
+        <label>Create password
+          <input
+            type="password"
+            name="password"
+            placeholder="********"
+            class="signUp-mentor__group-input"
+            formControlName="password"/>
+        </label>
+        <div class="invalid-feedback">
+          <span *ngIf="signUpMentorForm.controls['password'].invalid && signUpMentorForm.controls['password'].touched">Password must be at least 6 characters</span>
+        </div>
+      </div>
+      <div class="signUp-mentor__group">
+        <label>Confirm password
+          <input
+            type="password"
+            name="confirmPassword"
+            placeholder="********"
+            class="signUp-mentor__group-input"
+            formControlName="confirmPassword"/>
+        </label>
+        <div class="invalid-feedback">
+          <span
+            *ngIf="signUpMentorForm.controls['confirmPassword'].invalid && signUpMentorForm.controls['confirmPassword'].touched">This field is required</span>
+          <div>
+            <span *ngIf="signUpMentorForm.controls['confirmPassword'].touched && signUpMentorForm.errors?.invalid">Password and confirmation password must match</span>
+          </div>
+        </div>
+      </div>
+      <div class="signUp-mentor__wrapper-btn">
+        <button type="submit"
+                [disabled]="!signUpMentorForm.valid"
+                class="signUp-mentor__btn">Next step
+        </button>
+      </div>
+    </form>
+
+  </div>
+</section>

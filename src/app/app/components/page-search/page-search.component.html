@@ -1,0 +1,90 @@
+<section class="search_page">
+  <div class="search_page-container">
+    <h2 class="search_page-title">Search</h2>
+    <div class="search_page-block">
+      <form>
+        <div class="search_page-wrapper-input">
+          <label>
+            <input type="text" placeholder="John Doe" name="searchName" [(ngModel)]="searchName" autofocus
+                   [autocomplete]="false">
+          </label>
+          <button
+            class="search_page-btn"
+            type="button">Search
+            <img src="/assets/icons/search-icon.svg" alt="search">
+          </button>
+        </div>
+
+        <div class="search_page-group-select">
+          <div class="search_page-group">
+            <div class="search_page-select-wrapper">
+              <app-select-profession></app-select-profession>
+            </div>
+
+            <div class="customSelect-aspects__wrapper">
+              <p>Professional aspects</p>
+              <div class="customSelect-aspects__wrapper-input">
+                <input type="text"
+                       name="aspects"
+                       ngModel
+                       #aspects="ngModel"
+                       required
+                       (keyup)="fetchAspectsItems($event)"
+                       placeholder="Search.."/>
+                <img src="assets/icons/arrowDown.svg" alt="arrow">
+              </div>
+              <ul class="customSelect-aspects__search-list">
+                <li class="customSelect-aspects__search-item"
+                    *ngFor="let aspect of searchResultAspects"
+                    (click)="showDetailsAspects(aspect)"
+                    [hidden]="toggleAspects">
+                  <p> {{ aspect }}</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="search_page__group-rating">
+            <span>Min rating</span>
+            <div class="search_page__wrapper-input-rating">
+              <div class="search_page__wrapper-icon-rating">
+                <img src="/assets/icons/searchStar.svg" alt="icon">
+              </div>
+              <input id="rating-input"
+                     type="number"
+                     min="1"
+                     placeholder="3">
+            </div>
+          </div>
+          <div class="search_page__group-rate">
+            <span>Max hourly rate</span>
+            <div class="search_page__wrapper-input-rate">
+              <div class="search_page__wrapper-icon-rate">
+                <img src="/assets/icons/rate.svg" alt="icon">
+              </div>
+              <input id="rate-input"
+                     type="number"
+                     min="1"
+                     placeholder="12">
+            </div>
+          </div>
+        </div>
+
+        <div class="customSelect-aspects__details">
+          <p *ngFor="let aspects of defaultAspects">{{aspects}}</p>
+          <p *ngFor="let item of choseAspects">{{item}}</p>
+        </div>
+      </form>
+    </div>
+    <div *ngIf="isLoading" style="text-align: center; padding: 3rem">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+    <div class="wrapper-list">
+      <app-expert-card class="wrapper-card"
+                       *ngFor="let expertEl of experts | filter: searchName"
+                       [expert]="expertEl"
+                       [index]="expertEl.id">
+      </app-expert-card>
+    </div>
+  </div>
+</section>

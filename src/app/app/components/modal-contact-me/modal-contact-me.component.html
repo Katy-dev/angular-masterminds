@@ -1,0 +1,43 @@
+<div class="modal__overlay"
+     (click)="closeModal()">
+  <div class="modal__wrapper">
+    <div class="modal__content">
+      <div class="modal__expert">
+        <div class="modal__expert-avatar"><img [src]="image" alt="avatar">
+        </div>
+        <div class="modal__expert-about-expert">
+          <p>{{name}}</p>
+          <p>{{profession | titlecase}}</p>
+        </div>
+      </div>
+      <div class="modal__close" (click)="closeModal()">
+        <img src="/assets/icons/close-modal.svg" alt="close"></div>
+      <ul class="modal__contacts">
+        <li class="modal__contacts-contact">
+          <div class="modal__contact-phone">
+            <a href="tel:0971111111" target="_blank"><img src="/assets/icons/phone.svg" alt="call"></a>
+          </div>
+          Call
+        </li>
+        <li class="modal__contacts-contact">
+          <div class="modal__contact-chat">
+            <a><img src="/assets/icons/chat.svg" alt="chat"></a>
+          </div>
+          Chat
+        </li>
+        <li class="modal__contacts-contact">
+          <div class="modal__contact-fb">
+            <a href="https://www.facebook.com/" target="_blank"><img src="/assets/icons/fb.svg" alt="fb"></a>
+          </div>
+          Facebook
+        </li>
+        <li class="modal__contacts-contact">
+          <div class="modal__contact-email">
+            <a href="mailto: abc@example.com" target="_blank"><img src="/assets/icons/email.svg" alt="email"></a>
+          </div>
+          Email
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

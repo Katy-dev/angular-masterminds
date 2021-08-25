@@ -1,0 +1,108 @@
+<section class="container">
+  <div class="mentor-detail">
+    <div *ngIf="toggleModal">
+      <app-modal-contact-me [name]="expert.fullName" [image]="expert.image" [profession]="expert.profession"
+                            (close)="closeModal()"></app-modal-contact-me>
+    </div>
+    <div class="mentor-detail__wrapper">
+      <div class="mentor-detail__group">
+        <div class="mentor-detail__group-mentor">
+          <div class="mentor-detail__photo">
+            <img [src]="expert?.image" alt="mentor">
+          </div>
+          <div>
+            <p class="mentor-detail__name">{{expert?.fullName}}</p>
+            <p class="mentor-detail__prof">{{expert?.profession | titlecase}}</p>
+          </div>
+
+        </div>
+        <div class="mentor-detail__group-rate">
+          <p class="mentor-detail__rate">Rate $15/h</p>
+          <div class="card-range">
+            <ul>
+              <li class="list-inline rating-list" *ngFor="let star of stars" style="display: inline-block">
+                <svg
+                  [ngClass]="{'selected': (star <= expert?.rating)}"
+                  width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M7 0L8.5716 4.83688H13.6574L9.5429 7.82624L11.1145 12.6631L7 9.67376L2.8855 12.6631L4.4571 7.82624L0.342604 4.83688H5.4284L7 0Z"
+                    fill="#C4C4C4"/>
+                </svg>
+              </li>
+            </ul>
+          </div>
+          <p class="mentor-detail__reviews">Based on 17 reviews</p>
+        </div>
+      </div>
+      <button (click)="openModal()"
+              class="mentor-detail__modal-btn">Contact me
+      </button>
+      <button class="mentor-detail__btn" (click)="onLike()">{{Liked ? 'Dislike' : 'Like'}}
+        <img src="assets/icons/like.svg"
+             alt="heard"></button>
+    </div>
+
+    <div class="mentor-detail__content">
+      <h5 class="mentor-detail__content-title">Professional aspects</h5>
+      <ul class="mentor-detail__prof-aspects">
+        <li class="mentor-detail__prof-aspect">Mental health</li>
+        <li class="mentor-detail__prof-aspect">Physical health</li>
+        <li class="mentor-detail__prof-aspect">Well-being</li>
+      </ul>
+
+      <h5 class="mentor-detail__title">Profile</h5>
+      <p class="mentor-detail__discr">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sagittis sollicitudin varius. Morbi massa enim,
+        vulputate in pulvinar in, congue ut ipsum. Ut a turpis consectetur, vestibulum nibh id, dapibus urna. Duis
+        tincidunt ligula id tempor aliquam. Morbi non est id quam cursus pulvinar. Pellentesque congue et augue vel
+        euismod. Sed suscipit pulvinar lectus, quis efficitur elit cursus ac. Nunc feugiat tempor accumsan. Aliquam erat
+        volutpat.
+        <br>
+        <br>
+        Suspendisse in consectetur elit. Morbi ac volutpat orci, et lacinia urna. Morbi sit amet commodo nisl. Sed nec
+        finibus diam. Proin placerat sed est a rhoncus. Fusce porta varius lacus eu molestie. Vivamus lacus quam, tempor
+        at ullamcorper sit amet, consequat eget erat. Curabitur quam elit, semper nec turpis ac, placerat scelerisque
+        lectus. Maecenas iaculis magna at bibendum pharetra. Aliquam eu neque id dui ullamcorper dictum in at odio.
+        Maecenas sit amet odio pellentesque, semper quam ac, consequat arcu. Vestibulum ante ipsum primis in faucibus
+        orci luctus et ultrices posuere cubilia curae; Cras a turpis diam.</p>
+      <div class="mentor-detail__reviews">
+        <h5 class="mentor-detail__reviews-title">Reviews</h5>
+        <ul class="mentor-detail__reviews-wrap">
+          <li class="mentor-detail-item" *ngFor="let review of reviews">
+
+            <div class="mentor-detail__avatar">
+              <img [src]="review.image" alt="avatar">
+            </div>
+
+            <div class="mentor-detail__group-review">
+              <div class="mentor-detail-group">
+                <span>{{review.name}}</span>
+                <div class="card-range">
+                  <ul>
+                    <li class="list-inline rating-list" *ngFor="let star of stars" style="display: inline-block">
+                      <svg [ngClass]="{'selected': (star <= selectedValue)}"
+
+                           width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M7 0L8.5716 4.83688H13.6574L9.5429 7.82624L11.1145 12.6631L7 9.67376L2.8855 12.6631L4.4571 7.82624L0.342604 4.83688H5.4284L7 0Z"
+                          fill="#C4C4C4"/>
+                      </svg>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <p class="mentor-detail__reviews-descr">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
+                sagittis sollicitudin varius. Morbi massa
+                enim, vulputate in pulvinar in, congue ut ipsum. Ut a turpis consectetur, vestibulum nibh id, dapibus
+                urna...</p>
+            </div>
+          </li>
+        </ul>
+        <div class="mentor-detail__reviews-link-wrap">
+          <a class="mentor-detail__reviews-link"
+             (click)="getAllReviews()">{{show ? 'Close all reviews' : 'See more reviews'}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

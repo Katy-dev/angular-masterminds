@@ -1,0 +1,50 @@
+@import "./src/styles/styles.scss";
+
+.customSelect {
+  padding-top: 40px;
+
+  .customSelect__label {
+    @extend %style-label-input;
+  }
+
+  .customSelect__wrapper-input {
+    position: relative;
+
+    & input {
+      @extend %style-input;
+      color: #555770;
+    }
+
+    & img {
+      position: absolute;
+      top: 14px;
+      right: 15px;
+    }
+  }
+
+  .customSelect__search-list {
+    border-radius: 4px;
+    color: #555770;
+    background-color: $whiteColor;
+    box-shadow: -1px 3px 17px 0px rgba(34, 60, 80, 0.2);
+    position: absolute;
+    z-index: 10;
+    min-width: 300px;
+
+    .customSelect__search-item {
+      padding: 8px 10px;
+      font-size: 14px;
+      line-height: 120%;
+      text-align: left;
+    }
+
+    .customSelect__search-item:hover {
+      background-color: #E5E5E5;
+      opacity: 0.6;
+    }
+  }
+}
+
+.open {
+  display: block;
+}

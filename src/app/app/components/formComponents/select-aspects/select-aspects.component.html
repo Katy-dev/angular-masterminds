@@ -1,0 +1,20 @@
+<form [formGroup]="selectAspectsForm "
+      class="customSelect-aspects__wrapper">
+  <p>Professional aspects</p>
+  <div class="customSelect-aspects__wrapper-input">
+    <input type="text" formControlName="aspects" (keyup)="fetchAspectsItems($event)" placeholder="Search.."/>
+    <img src="assets/icons/arrowDown.svg" alt="arrow">
+  </div>
+  <ul class="customSelect-aspects__search-list">
+    <li class="customSelect-aspects__search-item"
+        *ngFor="let result of searchResult"
+        (click)="showDetails(result)"
+        [hidden]="toggle">
+      <p> {{ result }}</p>
+    </li>
+  </ul>
+  <div class="customSelect-aspects__details">
+    <p *ngFor="let aspects of defaultAspects">{{aspects}}</p>
+    <p *ngFor="let item of choseItems">{{item}}</p>
+  </div>
+</form>

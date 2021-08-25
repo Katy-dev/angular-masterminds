@@ -1,0 +1,142 @@
+<section class="expert-form-container">
+  <div class="expert-form__wrapper">
+    <h3 class="expert-form__title">Describe your expertise</h3>
+    <p class="expert-form__descr">Tell us about yourself and start rocking</p>
+    <div *ngIf="isLoading" style="text-align: center">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+    <div *ngIf="error" class="error">
+      <span>{{error}}</span>
+    </div>
+    <form (ngSubmit)="onSubmit(signUpMentor)" #signUpMentor="ngForm">
+      <div class="expert-form__group-wrapper">
+
+        <div class="expert-form__group">
+          <div class="customSelect">
+            <div
+              class="customSelect__wrapper">
+              <p class="customSelect__label">Profession</p>
+              <div class="customSelect__wrapper-input">
+                <input type="text"
+                       name="profession"
+                       [(ngModel)]="selectedInput"
+                       #profession="ngModel"
+                       required
+                       (keyup)="fetchItems($event)"
+                       placeholder="Search..."/>
+                <img src="assets/icons/arrowDown.svg" alt="arrow">
+              </div>
+              <ul class="customSelect__search-list">
+                <li class="customSelect__search-item"
+                    *ngFor="let result of searchResult"
+                    (click)="showDetails(result)"
+                    [hidden]="toggle">
+                  <p> {{ result }}</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="customSelect-aspects__wrapper">
+          <p>Professional aspects</p>
+          <div class="customSelect-aspects__wrapper-input">
+            <input type="text"
+                   name="aspects"
+                   [ngModel]="choseAspects"
+                   #aspects="ngModel"
+                   required
+                   (keyup)="fetchAspectsItems($event)"
+                   placeholder="Search.."/>
+            <img src="assets/icons/arrowDown.svg" alt="arrow">
+          </div>
+          <ul class="customSelect-aspects__search-list">
+            <li class="customSelect-aspects__search-item"
+                *ngFor="let aspect of searchResultAspects"
+                (click)="showDetailsAspects(aspect)"
+                [hidden]="toggleAspects">
+              <p> {{ aspect }}</p>
+            </li>
+          </ul>
+          <div class="customSelect-aspects__details">
+            <p *ngFor="let aspects of defaultAspects">{{aspects}}</p>
+            <p *ngFor="let item of choseAspects">{{item}}</p>
+          </div>
+        </div>
+
+        <div class="expert-form__group">
+          <label class="expert-form__label"
+                 for="skills">Describe your skills and experience
+          </label>
+          <textarea
+            class="expert-form__textarea"
+            id="skills"
+            name="skills"
+            placeholder=""
+            ngModel
+            #skills="ngModel"
+            required
+            minlength="10"
+            maxlength="140">
+      </textarea>
+          <div class="invalid-feedback">
+            <span *ngIf="skills.touched && skills.errors?.required">This field is required!</span>
+          </div>
+        </div>
+
+        <div class="expert-form__group rate-input">
+          <label
+            class="expert-form__label"
+            for="rate-input">
+            Hourly rate
+          </label>
+          <div class="expert-form__wrapper-input-rate">
+            <div class="expert-form__wrapper-icon-rate">
+              <img src="/assets/icons/rate.svg" alt="icon">
+            </div>
+            <input id="rate-input"
+                   type="number"
+                   name="rate"
+                   min="1"
+                   placeholder="10.00"
+                   ngModel
+                   #rate="ngModel"
+                   required>
+          </div>
+          <div class="invalid-feedback">
+            <span *ngIf="rate.touched && rate.errors?.required">This field is required!</span>
+          </div>
+        </div>
+
+        <div class="expert-form__group-checkbox">
+          <input
+            class="custom-checkbox"
+            id="checkbox"
+            name="terms"
+            type="checkbox"
+            ngModel
+            #terms="ngModel" required>
+          <label for="checkbox" class="expert-form__label checkbox"> I agree with
+            <span>Terms of Service</span>
+            and <span>Privacy Policy</span>
+          </label>
+        </div>
+        <div class="invalid-feedback">
+          <span *ngIf="terms.invalid && (terms.dirty || terms.touched)">This field is required!</span>
+        </div>
+      </div>
+
+      <div class="expert-form__wrapper-btn">
+        <button class="expert-form__btn-back" (click)="onBack()">
+          <img src="assets/icons/arrowback.svg" alt="arrow">
+        </button>
+        <button
+          class="expert-form__btn"
+          type="submit"
+          (click)="setSelectValues()">
+          Became an expert
+        </button>
+      </div>
+    </form>
+  </div>
+</section>

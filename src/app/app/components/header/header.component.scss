@@ -1,0 +1,422 @@
+@import "./src/styles/styles.scss";
+
+.header {
+  @include flex(row, center, flex-end);
+  background-color: $whiteColor;
+  box-shadow: $boxShadow;
+  padding: 16px 40px 16px 10px;
+  color: $darkGreyTitle;
+  font-family: $font_familyRoboto;
+  font-weight: $bold;
+
+  .header__navbar-icon-menu {
+    display: none;
+  }
+
+  .header__wrapper-logo {
+    @include flex(row, center, space-between);
+    flex-grow: 1;
+
+    img {
+      padding-right: 10px;
+    }
+
+    span {
+      font-size: 22px;
+      line-height: 26px;
+      cursor: pointer;
+      flex-grow: 1;
+    }
+  }
+
+  .header__wrapper-logo-mobile {
+    display: none;
+  }
+
+  .header__nav-overlay {
+    z-index: 100;
+
+    .header__wrapper_nav {
+      @include flex(row, center, space-between);
+      z-index: 100;
+
+      .header__nav {
+        @include flex(row, center, space-between);
+
+        li {
+          padding: 0 16px;
+          font-size: 16px;
+          line-height: 19px;
+          position: relative;
+          cursor: pointer;
+
+          &.active {
+            a {
+              color: $mainColor;
+            }
+          }
+
+          .underline {
+            position: relative;
+          }
+
+          .underline::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: $mainColor;
+            transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+          }
+
+          @media (hover: hover) and (pointer: fine) {
+            .underline:hover::before {
+              left: 0;
+              right: auto;
+              width: 100%;
+            }
+          }
+
+          a {
+            color: $darkGreyTitle;
+            cursor: pointer;
+          }
+
+          div {
+            font-size: 8px;
+            line-height: 9px;
+            @include size(12px, 12px);
+            background-color: $mainColor;
+            color: $whiteColor;
+            border-radius: 50%;
+            text-align: center;
+            padding: 2px 1px 2px 1px;
+            position: absolute;
+            top: -32%;
+            right: 8%;
+          }
+        }
+      }
+
+      .header_login,
+      .header_signUp {
+        font-family: $font_familyRoboto;
+        font-weight: $regular;
+        font-size: 14px;
+        line-height: 24px;
+        border-radius: $borderRadius;
+        padding: 4px 16px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .header_login {
+        margin: 0 20px 0 24px;
+        background-color: $whiteColor;
+        color: $mainColor;
+        border: 2px solid $mainColor;
+        padding: 4px 16px;
+        transition: $transition;
+      }
+
+      .header_signUp {
+        padding: 6px 16px;
+        display: inline-block;
+        color: $whiteColor;
+        transition: all .3s;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+
+        &:after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: $mainColor;
+          border-radius: 4px;
+          z-index: -2;
+        }
+
+        &:before {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0;
+          height: 100%;
+          background-color: rgb(39, 39, 238);
+          transition: all .3s;
+          border-radius: 4px;
+          z-index: -1;
+        }
+
+        &:hover {
+          color: #fff;
+
+          &:before {
+            width: 100%;
+          }
+        }
+      }
+
+      .header_login:hover {
+        box-shadow: 5px 5px 5px -2px rgba(51, 102, 255, 0.6);
+        transition: $transition;
+      }
+    }
+  }
+
+  .header__navbar-icon-user-laptop {
+    .header__btn-profile {
+      border: 2px solid $mainColor;
+      color: $mainColor;
+      background-color: white;
+      padding: 4px 10px 4px 16px;
+      border-radius: 4px;
+      margin-left: 10px;
+      cursor: pointer;
+
+      & img {
+        vertical-align: bottom;
+        padding-left: 5px;
+      }
+    }
+  }
+
+  .header__navbar-icon-user-mobile {
+    display: none;
+    border: 2px solid $mainColor;
+    color: $mainColor;
+    background-color: white;
+    padding: 5px 5px 1px 5px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+}
+
+@include tablet {
+  .header {
+    padding: 16px 20px;
+  }
+}
+
+@include mobile-w {
+
+  .header {
+    padding: 16px 15px 16px 20px;
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+
+    .header__navbar-icon-menu {
+      display: block;
+    }
+
+    .header__wrapper-logo {
+      z-index: 101;
+
+      span {
+        flex-grow: 1;
+        font-size: 22px;
+        line-height: 26px;
+      }
+    }
+
+    .header__nav-overlay {
+      position: fixed;
+      left: -100%;
+      top: 0;
+      background: rgba(94, 94, 94, 0.25);
+      width: 100%;
+      height: 100vh;
+      transition: all 0.5s ease-in-out;
+
+      .header__wrapper_nav {
+        position: fixed;
+        width: calc(100% - 60px);
+        padding: 0 20px 40px;
+        text-align: center;
+        background-color: $whiteColor;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+
+        .header__nav {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          flex-grow: 1;
+
+          .header__nav_link {
+            display: none;
+          }
+
+          li {
+            padding: 15px 0;
+            font-size: 24px;
+            line-height: 28px;
+          }
+        }
+      }
+
+      .header__wrapper-buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 50%;
+
+        .header_login {
+          margin: 0;
+        }
+
+        .header_signUp {
+          margin-top: 20px;
+        }
+      }
+    }
+
+    .header__navbar-icon-user {
+      display: block;
+      width: 36px;
+      height: 32px;
+      border-radius: 4px;
+      background-color: $mainColor;
+      padding: 9px;
+    }
+
+    .header__navbar-icon-user-laptop {
+      width: 100%;
+
+      .header__btn-profile {
+        padding: 6px 16px;
+        width: 40%;
+
+        & img {
+          padding-left: 10px;
+        }
+      }
+    }
+
+    .header__navbar-icon-user-mobile {
+      display: block;
+    }
+
+  }
+}
+
+@include mobile {
+
+  .header {
+    padding: 16px 10px 16px 10px;
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+
+    .header__navbar-icon-menu {
+      display: block;
+    }
+
+    .header__wrapper-logo {
+      z-index: 101;
+      padding-left: 10px;
+
+      span {
+        flex-grow: 1;
+        font-size: 22px;
+        line-height: 26px;
+        text-align: center;
+      }
+    }
+
+    .header__nav-overlay {
+      position: fixed;
+      left: -100%;
+      top: 0;
+      background: rgba(94, 94, 94, 0.25);
+      width: 100%;
+      height: 100vh;
+      transition: all 0.5s ease-in-out;
+
+      .header__wrapper_nav {
+        width: calc(100% - 60px);
+        padding: 0 20px 40px;
+        text-align: center;
+        background-color: $whiteColor;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+
+        .header__nav {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          flex-grow: 1;
+
+          .header__nav_link {
+            display: none;
+          }
+
+          li {
+            padding: 15px 0;
+            font-size: 24px;
+            line-height: 28px;
+          }
+        }
+
+        .header__wrapper-buttons {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          width: 100%;
+
+          .header_login {
+            margin: 0;
+          }
+
+          .header_signUp {
+            margin-top: 20px;
+          }
+        }
+      }
+    }
+
+    .header__navbar-icon-user-laptop {
+      width: 100%;
+
+      .header__btn-profile {
+        padding: 6px 16px;
+        width: 100%;
+        margin-left: 0;
+
+        & img {
+          padding-left: 10px;
+        }
+      }
+    }
+
+    .header__navbar-icon-user {
+      display: block;
+      width: 36px;
+      height: 32px;
+      border-radius: 4px;
+      background-color: $mainColor;
+      padding: 9px;
+      cursor: pointer;
+    }
+
+    .header__navbar-icon-user-mobile {
+      display: block;
+      cursor: pointer;
+    }
+  }
+}
+

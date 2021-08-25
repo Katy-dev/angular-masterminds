@@ -1,0 +1,234 @@
+@import "./src/styles/styles.scss";
+
+.invalid-feedback {
+  padding-top: 10px;
+  color: red;
+  text-align: center;
+}
+
+.error {
+  padding: 7px 20px;
+  border-radius: 4px;
+  border: 1px solid rgb(247, 130, 130);
+  color: rgb(248, 87, 87);
+  margin: 5px 0;
+}
+
+.success {
+  padding: 7px 20px;
+  min-width: 300px;
+  border-radius: 4px;
+  border: 2px solid rgba(18, 106, 22, 0.22);
+  color: rgba(54, 152, 66, 0.81);
+
+  & div {
+    text-align: center;
+  }
+
+}
+
+.loader {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.profile {
+  font-family: $font_familyInter;
+  background-color: $mainBgColor;
+  @extend %full-width;
+  padding: 60px 100px;
+
+  .profile__wrapper {
+    background-color: $whiteColor;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    padding: 60px 0;
+
+    .profile__form-wrapper {
+      min-width: 300px;
+
+      .profile__title {
+        @extend %style-title;
+        text-align: center;
+      }
+
+      .profile__sub-title {
+        @extend %style-description;
+        text-align: center;
+        padding: 10px 0 40px 0;
+      }
+
+      .profile__wrapper-img {
+        margin: 0 auto;
+        width: 80px;
+        height: 80px;
+          img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+          }
+      }
+      button[disabled]{
+        opacity: 0.7;
+      }
+      .profile__upload-btn {
+        margin-top: 20px;
+        text-align: center;
+        input {
+          display: none;
+        }
+        .wrapper-upload__btn {
+          margin: 0 auto;
+            max-width: 120px;
+          .upload__btn {
+            @extend %btn-style;
+          }
+        }
+
+      }
+
+      .profile__form {
+        padding-top: 20px;
+
+        .profile__form-group {
+          padding: 10px 0;
+          display: flex;
+
+          .profile__form-group-label,
+          .profile__form-group-content {
+            font-size: $font_14px;
+            line-height: 120%;
+            color: #000000;
+
+            & div {
+              padding: 5px 0;
+            }
+          }
+
+          .profile__form-group-content {
+            padding-left: 20px;
+          }
+        }
+
+        .profile__edit-btn {
+          text-align: center;
+
+          & button {
+            cursor: pointer;
+
+            & img {
+              vertical-align: middle;
+            }
+          }
+        }
+
+        .profile__btn {
+          @extend %btn-style;
+        }
+
+        .profile__btn-password {
+          width: 100%;
+          padding-top: 60px;
+
+          & button {
+            width: 100%;
+            cursor: pointer;
+          }
+        }
+
+        .profile__btn-logout {
+          width: 100%;
+          padding-top: 20px;
+
+          & button {
+            width: 100%;
+            cursor: pointer;
+          }
+
+        }
+
+        .profile__block-password {
+          .profile__block-password-group {
+            display: flex;
+            flex-direction: column;
+
+            & label {
+              @extend %style-label-input;
+            }
+
+            & input {
+              @extend %style-input;
+            }
+          }
+
+          .profile__block-password-btn {
+            text-align: center;
+            padding-top: 20px;
+
+            & button {
+              padding: 6px 24px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@include mobile-w {
+  .profile {
+    padding: 30px 0;
+
+    .profile__wrapper {
+      padding: 30px 0;
+      border-radius: 0;
+    }
+  }
+}
+
+@include mobile {
+  .profile {
+    padding: 30px 0;
+
+    .profile__wrapper {
+      padding: 30px 0;
+      border-radius: 0;
+
+      .profile__form-wrapper {
+        width: 100%;
+        padding: 0 30px;
+      }
+    }
+  }
+}
+.ng-tooltip {
+  position: absolute;
+  max-width: 150px;
+  font-size: 12px;
+  text-align: center;
+  color: white;
+  padding: 3px 8px;
+  background: rgb(130, 177, 235);
+  border-radius: 4px;
+  z-index: 1000;
+  opacity: 0;
+}
+.ng-tooltip:after {
+  content: "";
+  position: absolute;
+  border-style: solid;
+}
+
+.ng-tooltip-right:after {
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-color: transparent rgb(130, 177, 235) transparent transparent;
+}
+.ng-tooltip-show {
+  opacity: 1;
+}

@@ -1,0 +1,9 @@
+@import './mixins';
+@import './var.scss';
+@import './extend';
+@import "./responsive";
+@import "./reset";
+
+html {
+  font-family: 'Inter', sans-serif;
+}

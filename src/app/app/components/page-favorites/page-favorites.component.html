@@ -1,0 +1,13 @@
+<div class="container">
+  <h4>Favorites</h4>
+  <div *ngIf="isLoading" style="text-align: center">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+  <div class="wrapper-list">
+    <app-expert-card class="wrapper-card"
+                     *ngFor="let expertEl of experts"
+                     [expert]="expertEl"
+                     [index]="expertEl.id">
+    </app-expert-card>
+  </div>
+</div>

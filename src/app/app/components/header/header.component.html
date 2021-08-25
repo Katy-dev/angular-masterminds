@@ -1,0 +1,71 @@
+<header class="header">
+  <div class="header__navbar-icon-menu" (click)="toggle()">
+    <img src="/assets/icons/hamburger-menu.svg" alt="menu-icon">
+  </div>
+  <div class="header__wrapper-logo"
+       [style.padding-left]="isOpen ? '0': '20px'"
+        [ngStyle]="isOpen ? { position: 'fixed' }:{ position: 'relative' }" >
+    <img src="assets/icons/logo.svg" alt="logo">
+    <span routerLinkActive="active"
+          [style.text-align]="isOpen? 'start': 'start'"
+          [routerLinkActiveOptions]="{exact: true}"
+          routerLink="/">
+      MASTERMINDS
+    </span>
+  </div>
+  <div class="header__nav-overlay"
+       [style.left]="isOpen? '0': '-100%'" #overlay>
+    <nav class="header__wrapper_nav" #navbar>
+      <ul class="header__nav">
+        <li
+          class="header__nav_link"
+          *ngIf="isAuth"
+          routerLinkActive="active">
+          <a class="underline" routerLink="/favorites">Favorites</a>
+          <div>{{count}}</div>
+        </li>
+        <li routerLinkActive="active">
+          <a class="underline" routerLink="/search">Search</a>
+        </li>
+        <li routerLinkActive="active">
+          <a class="underline" routerLink="/about">About us</a>
+        </li>
+      </ul>
+      <div *ngIf="!isAuth"
+           class="header__wrapper-buttons">
+        <button class="header_login" (click)="openLogin()">Log in</button>
+        <button class="header_signUp" (click)="openSignUp()">Sign up</button>
+      </div>
+      <div *ngIf="isAuth"
+           routerLink="/profile"
+           class="header__navbar-icon-user-laptop">
+        <button type="button"
+           class="header__btn-profile">
+          <span>Profile</span>
+          <img
+            src="/assets/icons/authUser.svg"
+            alt="menu-icon">
+        </button>
+      </div>
+    </nav>
+  </div>
+  <div *ngIf="isAuth"
+       routerLink="/profile"
+       class="header__navbar-icon-user-mobile">
+    <a type="button"
+       class="header__btn-profile-mob">
+      <img
+        src="/assets/icons/authUser.svg"
+        alt="menu-icon">
+    </a>
+  </div>
+  <div *ngIf="!isAuth || isAuth && isOpen"
+       (click)="openSignUp()"
+       [ngStyle]="isOpen ? { position: 'absolute', right: '2%' }:{ position: 'relative', left: '0' }"
+       class="header__navbar-icon-user">
+    <img
+      src="/assets/icons/nonAuthUser.svg"
+      alt="menu-icon">
+  </div>
+</header>
+<ng-template appAuth></ng-template>

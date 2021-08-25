@@ -1,0 +1,67 @@
+<section class="profile-edit">
+  <div class="profile-edit__wrapper">
+    <div class="profile-edit__form-wrapper">
+      <h4 class="profile-edit__title">Hello, {{displayName}}!</h4>
+      <div *ngIf="isLoading"
+           @myInsertRemoveTrigger
+           class="loader">
+        <app-loading-spinner></app-loading-spinner>
+      </div>
+      <div *ngIf="error"
+           @myInsertRemoveTrigger
+           class="error">
+        <span>{{error}}</span>
+      </div>
+      <p class="profile-edit__sub-title">Edit or review you information</p>
+      <div class="profile-edit__wrapper-img">
+        <img src="assets/images/Avatar.svg" alt="photo">
+      </div>
+      <form
+        (ngSubmit)="onSubmit(editUserData)"
+        #editUserData="ngForm"
+        class="profile-edit__form">
+        <div class="profile-edit__group">
+          <label for="fullName">Full name</label>
+          <input type="text"
+                 name="fullName"
+                 id="fullName"
+                 placeholder="John Doe"
+                 [(ngModel)]= "displayName"
+                 #fullName="ngModel"
+                 disabled>
+        </div>
+        <div class="invalid-feedback">
+            <span *ngIf="fullName.invalid && (fullName.dirty || fullName.touched)">
+              This field is required!</span>
+        </div>
+        <div class="profile-edit__group">
+          <label for="email">Email</label>
+          <input type="email"
+                 name="email"
+                 id="email"
+                 placeholder="example@gmail.com"
+                 ngModel
+                 #email="ngModel"
+                 required
+                 email>
+        </div>
+        <div class="invalid-feedback">
+            <span *ngIf="email.invalid && (email.dirty || email.touched)">
+              This field is required!</span>
+          <div>
+              <span *ngIf="email.errors?.pattern">
+              Please enter.
+            </span>
+          </div>
+        </div>
+        <div class="profile-edit__btn">
+          <button (click)="onCancel()"
+                  class="profile__btn-light"
+                  type="reset">Cancel
+          </button>
+          <button class="profile__btn" type="submit">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

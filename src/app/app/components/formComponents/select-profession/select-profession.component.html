@@ -1,0 +1,19 @@
+<div class="customSelect">
+  <form [formGroup]="selectForm"
+        class="customSelect__wrapper">
+    <p class="customSelect__label">Profession</p>
+    <div class="customSelect__wrapper-input">
+      <input type="text" formControlName="profession" value="{{selectedInput}}" (keyup)="fetchItems($event)"
+             placeholder="Search..."/>
+      <img src="assets/icons/arrowDown.svg" alt="arrow">
+    </div>
+    <ul class="customSelect__search-list">
+      <li class="customSelect__search-item"
+          *ngFor="let result of searchResult"
+          (click)="showDetails(result)"
+          [hidden]="toggle">
+        <p> {{ result }}</p>
+      </li>
+    </ul>
+  </form>
+</div>

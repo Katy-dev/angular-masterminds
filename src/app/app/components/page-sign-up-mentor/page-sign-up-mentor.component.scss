@@ -1,0 +1,103 @@
+@import "./src/styles/styles.scss";
+
+input.ng-touched.ng-invalid {
+  border: solid red 2px;
+}
+
+input.ng-touched.ng-valid {
+  border: solid green 2px;
+}
+
+.signUp-mentor__wrapper {
+  font-family: $font_familyInter;
+  background-color: $mainBgColor;
+  @extend %full-width;
+  padding: 60px 100px;
+  z-index: 5;
+
+  .signUp__form-wrapper {
+    background-color: $whiteColor;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    padding: 60px 0;
+
+    .signUp-mentor__title {
+      @extend %style-title;
+    }
+
+    .signUp-mentor__descr {
+      @extend %style-description;
+      padding: 10px 0;
+    }
+
+    .signUp-mentor__group {
+      padding-top: 30px;
+
+      & label {
+        @include flex(column, flex-start, flex-start);
+        @extend %style-label-input;
+      }
+
+      .signUp-mentor__group-input {
+        margin-top: 4px;
+        @extend %style-input;
+      }
+
+      input.ng-touched.ng-invalid {
+        border: solid red 1px;
+      }
+
+    }
+
+    .signUp-mentor__wrapper-btn {
+      @include flex(row, center, center);
+
+      .signUp-mentor__btn {
+        @extend %btn-style;
+        margin: 34px 0 24px;
+        padding: 4px 16px;
+        min-width: 142px;
+        cursor: pointer;
+        &:hover {
+          background-color: rgb(39, 39, 238);
+          transition: $transition;
+        }
+      }
+    }
+
+  }
+}
+
+button[disabled] {
+  opacity: 0.8;
+}
+
+.invalid-feedback {
+  padding-top: 10px;
+  color: red;
+}
+
+@include mobile-w {
+  .signUp-mentor__wrapper {
+    padding: 30px 0;
+
+    .signUp__form-wrapper {
+      padding: 30px 0;
+      border-radius: 0;
+    }
+  }
+}
+
+@include mobile {
+  .signUp-mentor__wrapper {
+    padding: 30px 0;
+
+    .signUp__form-wrapper {
+      padding: 30px 0;
+      border-radius: 0;
+    }
+  }
+}

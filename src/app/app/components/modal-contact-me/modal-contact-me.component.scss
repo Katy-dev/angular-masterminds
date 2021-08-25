@@ -1,0 +1,171 @@
+@import "./src/styles/styles.scss";
+
+.modal__overlay {
+  font-family: $font_familyInter;
+  position: fixed;
+  @extend %fullWindow;
+  background: rgba(94, 94, 94, 0.25);
+  height: 100%;
+  transition: opacity 250ms ease-in;
+  z-index: 105;
+
+  .modal__wrapper {
+    position: fixed;
+    width: 400px;
+    background-color: white;
+    @extend %position-center;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    z-index: 100;
+
+    .modal__content {
+      padding: 40px 40px 30px;
+
+      .modal__expert {
+        display: flex;
+        justify-content: center;
+
+        .modal__expert-about-expert {
+          padding: 10px;
+          font-weight: $medium;
+          font-size: $font_14px;
+          line-height: 1.125rem;
+          color: $greyColor;
+
+          & p:first-child {
+            font-size: $font_18px;
+            line-height: 2rem;
+            font-weight: bold;
+            color: $darkGreyTitle;
+          }
+        }
+
+      }
+
+      .modal__close {
+        background: none;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 16px;
+      }
+
+      .modal__contacts {
+        padding-top: 40px;
+        display: flex;
+        justify-content: space-between;
+
+        .modal__contacts-contact {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          .modal__contact-phone {
+            @extend %btn-contact;
+            background-color: #22AA00;
+            @include flex(row, center, center);
+            margin-bottom: 7px;
+
+            & img {
+              line-height: 100%;
+            }
+          }
+
+          .modal__contact-chat {
+            @extend %btn-contact;
+            background-color: #EAAA07;
+            @include flex(row, center, center);
+            margin-bottom: 7px;
+
+            & img {
+              line-height: 100%;
+            }
+          }
+
+          .modal__contact-fb {
+            @extend %btn-contact;
+            background-color: #3266A8;
+            @include flex(row, center, center);
+            margin-bottom: 7px;
+
+            & img {
+              line-height: 100%;
+            }
+          }
+
+          .modal__contact-email {
+            @extend %btn-contact;
+            background-color: #EF5555;
+            @include flex(row, center, center);
+            margin-bottom: 7px;
+
+            & img {
+              line-height: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@include mobile-w {
+  .modal__overlay {
+    padding: 0 30px;
+    background-color: white;
+    width: 100%;
+
+    .modal__wrapper {
+      box-shadow: none;
+      background-color: white;
+      width: 100%;
+
+      .modal__content {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .modal__expert {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          flex-grow: 1;
+        }
+      }
+    }
+  }
+}
+
+@include mobile {
+  .modal__overlay {
+    padding: 0 30px;
+    background-color: white;
+    width: 100%;
+
+    .modal__wrapper {
+      box-shadow: none;
+      background-color: white;
+      width: 100%;
+
+      .modal__content {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .modal__expert {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          flex-grow: 1;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,180 @@
+@import "./src/styles/styles.scss";
+
+.login-form__wrapper {
+  z-index: 102;
+  font-family: $font_familyInter;
+  position: fixed;
+  @extend %fullWindow;
+  background: rgba(94, 94, 94, 0.25);
+  height: 100vh;
+
+  .login-form__overlay {
+    position: fixed;
+    @extend %position-center;
+
+    .form-wrapper {
+      padding: 40px 20px;
+      position: relative;
+      background-color: $whiteColor;
+      @include flex(column, center, center);
+      width: 700px;
+      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+
+      .close-modal {
+        background: none;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 16px;
+      }
+
+      .login-form__title {
+        font-weight: $bold;
+        font-size: $font_32px;
+        line-height: 44px;
+        color: $darkGreyTitle;
+      }
+
+      .login-form__descr {
+        font-weight: normal;
+        font-size: $font_16px;
+        line-height: 150%;
+        color: $darkText;
+        padding: 10px 0;
+      }
+
+      .login-form__group {
+        padding-top: 30px;
+        @include flex(column, flex-start, flex-start);
+
+        .login-form__group-label {
+          @include flex(row, center, flex-start);
+          width: 300px;
+        }
+
+        label {
+          color: $greyColor;
+          font-size: 10px;
+          line-height: 120%;
+          padding-bottom: 4px;
+          flex-grow: 1;
+        }
+
+        .login-form__group-input {
+          min-width: 300px;
+          color: $darkGreyTitle;
+          border: 1px solid $greyLightText;
+          border-radius: 4px;
+          padding: 8px 0 7px 10px;
+        }
+
+        input.ng-touched.ng-invalid {
+          border: solid red 1px;
+        }
+
+        .login__form-reset-password {
+          color: $mainColor;
+          font-size: 10px;
+          line-height: 16px;
+          font-weight: normal;
+          padding-bottom: 4px;
+          cursor: pointer;
+        }
+      }
+
+      .login-form__wrapper-btn {
+        @include flex(row, center, center);
+
+        .login-form__btn {
+          @extend %btn-style;
+          margin: 34px 0 24px;
+          cursor: pointer;
+        }
+      }
+
+      .login-form__link-sign-up span:nth-child(1) {
+        font-size: $font_14px;
+        line-height: 16px;
+        color: $greyColor;
+      }
+
+      .login-form__link-sign-up span:nth-child(2) {
+        color: $mainColor;
+        cursor: pointer;
+      }
+    }
+
+  }
+}
+
+button[disabled] {
+  opacity: 0.6;
+}
+
+.invalid-feedback {
+  padding-top: 10px;
+  color: red;
+}
+
+.error {
+  padding: 7px 20px;
+  min-width: 300px;
+  border-radius: 4px;
+  border: 1px solid rgb(247, 130, 130);
+  color: rgb(248, 87, 87);
+}
+
+@include mobile-w {
+  .login-form__wrapper {
+    background-color: white;
+    width: 100%;
+
+    .login-form__overlay {
+      width: 100%;
+      height: 100%;
+
+      .form-wrapper {
+        box-shadow: none;
+        background-color: white;
+        width: 100%;
+        padding-top: 20%;
+
+        .close-modal {
+          top: 0;
+          right: 0;
+        }
+
+      }
+    }
+  }
+}
+
+@include mobile {
+  .login-form__wrapper {
+    padding: 0 30px;
+    background-color: white;
+    width: 100%;
+
+    .login-form__overlay {
+      width: 100%;
+      height: 100%;
+
+      .form-wrapper {
+        box-shadow: none;
+        background-color: white;
+        width: 100%;
+        padding-top: 30%;
+
+        .close-modal {
+          top: 0;
+          right: 0;
+        }
+
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+<section class="login-form__wrapper">
+  <div class="login-form__overlay">
+    <div class="form-wrapper">
+      <button type="button"
+              class="close-modal"
+              (click)="onClose()">
+        <img src="/assets/icons/close-modal.svg" alt="close">
+      </button>
+      <h3 class="login-form__title">Log in</h3>
+      <p class="login-form__descr">Complete the form to access your account</p>
+      <div *ngIf="isLoading" style="text-align: center">
+        <app-loading-spinner></app-loading-spinner>
+      </div>
+      <div *ngIf="error" class="error">
+        <span>{{error}}</span>
+      </div>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="login-form__group">
+          <label for="email">Full name or email</label>
+          <input id="email" type="text"
+                 formControlName="email"
+                 placeholder="example@email.com"
+                 class="login-form__group-input"/>
+          <div class="invalid-feedback">
+            <span *ngIf="loginForm.controls['email'].invalid && loginForm.controls['email'].touched">This field is required</span>
+          </div>
+        </div>
+        <div class="login-form__group">
+          <div class="login-form__group-label">
+            <label for="password">Password</label>
+            <span class="login__form-reset-password">Forgot your password?</span>
+          </div>
+          <input id="password"
+                 type="password"
+                 formControlName="password"
+                 placeholder="********"
+                 class="login-form__group-input"/>
+          <div class="invalid-feedback">
+            <span *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched">Password must be at least 6 characters</span>
+          </div>
+        </div>
+        <div class="login-form__wrapper-btn">
+          <button type="submit"
+                  class="login-form__btn"
+                  [disabled]="!loginForm.valid">Sign in
+          </button>
+        </div>
+      </form>
+      <div class="login-form__link-sign-up">
+        <span>Don’t have an account?</span>
+        <span (click)="onSignup()"> Sign up</span>
+      </div>
+    </div>
+  </div>
+</section>

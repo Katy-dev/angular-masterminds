@@ -1,0 +1,184 @@
+@import "./src/styles/styles.scss";
+
+input.ng-touched.ng-invalid {
+  border: solid red 2px;
+}
+
+input.ng-touched.ng-valid {
+  border: solid green 2px;
+}
+
+.signUp-form__wrapper {
+  z-index: 102;
+  font-family: $font_familyInter;
+  position: fixed;
+  overflow: auto;
+  @extend %fullWindow;
+  background: rgba(94, 94, 94, 0.25);
+  height: 100%;
+
+
+  .signUp-form__overlay {
+    @extend %position-center;
+
+    .form-wrapper {
+      padding: 40px 20px;
+      position: relative;
+      background-color: $whiteColor;
+      @include flex(column, center, center);
+      width: 700px;
+      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+
+      .close-modal {
+        background: none;
+        color: inherit;
+        border: none;
+        font: inherit;
+        cursor: pointer;
+        outline: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 16px;
+      }
+
+      .signUp__title {
+        @extend %style-title;
+      }
+
+      .signUp__descr {
+        @extend %style-description;
+        padding: 10px 0;
+      }
+
+      .signUp-form__group {
+        padding-top: 30px;
+
+        & label {
+          @include flex(column, flex-start, flex-start);
+          @extend %style-label-input;
+        }
+
+        .signUp-form__group-input {
+          margin-top: 4px;
+          @extend %style-input;
+        }
+
+        input.ng-touched.ng-invalid {
+          border: solid red 1px;
+        }
+      }
+
+      .signUp-form__wrapper-btn {
+        @include flex(row, center, center);
+
+        .signUp-form__btn {
+          @extend %btn-style;
+          margin: 34px 5px 24px 5px;
+          cursor: pointer;
+
+        }
+      }
+
+      .signUp-form__link span:nth-child(1) {
+        font-size: $font_14px;
+        line-height: 16px;
+        color: $greyColor;
+      }
+
+      .signUp-form__link span:nth-child(2) {
+        color: $mainColor;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+button[disabled] {
+  opacity: 0.6;
+}
+
+.invalid-feedback {
+  padding-top: 10px;
+  color: red;
+}
+
+.error {
+  padding: 7px 20px;
+  min-width: 300px;
+  border-radius: 4px;
+  border: 1px solid rgb(247, 130, 130);
+  color: rgb(248, 87, 87);
+}
+
+@include mobile-w {
+  .signUp-form__wrapper {
+    overflow: auto;
+    background-color: white;
+    width: 100%;
+
+    .signUp-form__overlay {
+      position: relative;
+      width: 100%;
+      height: 100%;
+
+      .form-wrapper {
+        overflow: auto;
+        box-shadow: none;
+        background-color: white;
+        width: 100%;
+        padding-top: 20%;
+
+        .signUp-form__wrapper-btn {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+
+          .signUp-form__btn {
+            margin: 10px 0;
+          }
+
+          .signUp-form__btn:first-child {
+            padding: 8px 22px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include mobile {
+  .signUp-form__wrapper {
+    background-color: white;
+    width: 100%;
+
+    .signUp-form__overlay {
+      position: relative;
+      width: 100%;
+      height: 100%;
+
+      .form-wrapper {
+        box-shadow: none;
+        background-color: white;
+        width: 100%;
+        padding-top: 30%;
+
+        .signUp-form__wrapper-btn {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+
+          .signUp-form__btn {
+            margin: 10px 0;
+
+            .signUp-form__btn:first-child {
+              padding: 8px 22px;
+            }
+          }
+        }
+      }
+    }
+
+  }
+}

@@ -1,0 +1,97 @@
+<section class="profile">
+  <div class="profile__wrapper">
+    <div class="profile__form-wrapper">
+      <h4 class="profile__title">Hello, {{user.displayName}}!</h4>
+      <div *ngIf="error"
+           @myInsertRemoveTrigger
+           class="error">
+        <span>{{error}}</span>
+      </div>
+      <div *ngIf="success"
+           @myInsertRemoveTrigger
+           class="success">
+        <div>{{success}}</div>
+      </div>
+      <p class="profile__sub-title">Edit or review you information</p>
+      <div class="profile__wrapper-img">
+        <img
+          [src]="imagePreview"
+          alt="photo">
+      </div>
+      <div class="profile__upload-btn">
+        <input type="file"
+               (change)="onFileUpload($event)"
+        #input>
+        <div class="wrapper-upload__btn"
+             [tooltip]="tooltipMessage"
+             placement="right"
+             delay="500">
+          <button class="upload__btn"
+                  (click)="upLoadPhoto()"
+                  [disabled] = "!this.checkMentor"
+          >Upload photo
+          </button>
+        </div>
+      </div>
+      <div class="profile__form">
+        <div class="profile__form-group">
+          <div class="profile__form-group-label">
+            <div>Full name:</div>
+            <div>Email:</div>
+          </div>
+          <div class="profile__form-group-content">
+            <div>{{user.displayName}}</div>
+            <div>{{user.email}}</div>
+          </div>
+        </div>
+        <div class="profile__edit-btn">
+          <button class="profile__btn" (click)="editUserData()">Edit
+            <img src="../../../../assets/icons/pencil.svg" alt="edit">
+          </button>
+        </div>
+        <div *ngIf="isLoading" class="loader">
+          <app-loading-spinner></app-loading-spinner>
+        </div>
+        <form (ngSubmit)="onSubmit(editPassword)" #editPassword="ngForm"
+              *ngIf="toggle" class="profile__block-password">
+          <div class="profile__block-password-group">
+            <label for="password">Enter new password</label>
+            <input type="password"
+                   name="password"
+                   id="password"
+                   placeholder="******"
+                   ngModel
+                   #password="ngModel"
+                   required
+                   minlength="6">
+          </div>
+          <div class="invalid-feedback">
+            <span *ngIf="password.invalid && (password.dirty || password.touched)">
+              This field is required!</span>
+            <div>
+              <span *ngIf="password.errors?.minlength">
+              Password must be at least 6 characters long.
+            </span>
+            </div>
+          </div>
+          <div class="profile__block-password-btn">
+            <button class="profile__btn"
+                    type="submit">Save
+            </button>
+          </div>
+        </form>
+        <div class="profile__btn-password">
+          <button *ngIf="!toggle"
+                  @myInsertRemoveTrigger
+                  class="profile__btn"
+                  (click)="onChangePassword()">
+            Change password
+          </button>
+        </div>
+        <div class="profile__btn-logout">
+          <button class="profile__btn" (click)="onLogout()">Logout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,75 @@
+@import "./src/styles/styles.scss";
+
+.footer {
+  @include flex(row, center, space-between);
+  background-color: $whiteColor;
+  box-shadow: $boxShadow;
+  padding: 16px 40px;
+  color: $darkGreyTitle;
+  font-family: $font_familyRoboto;
+  font-weight: $bold;
+
+  .footer__wrapper {
+    @include flex(row, center, space-between);
+
+    .footer__logo {
+      padding-right: 25px;
+    }
+
+    .footer__nav {
+      @include flex(row, center, space-between);
+
+      li {
+        padding: 0 16px;
+        font-size: $font_16px;
+        line-height: 19px;
+        cursor: pointer;
+
+        .underline {
+          position: relative;
+        }
+
+        .underline::before {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          width: 0;
+          height: 2px;
+          background-color: $mainColor;
+          transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+          .underline:hover::before {
+            left: 0;
+            right: auto;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  p {
+    color: $greyLightText;
+    font-family: $font_familyInter;
+    font-weight: $regular;
+    font-size: $font_12px;
+    line-height: 150%;
+  }
+}
+
+@include mobile-w {
+  .footer__nav {
+    visibility: hidden;
+    width: 0;
+  }
+}
+
+@include mobile {
+  .footer__nav {
+    visibility: hidden;
+    width: 0;
+  }
+}
